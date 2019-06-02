@@ -3,6 +3,7 @@ import { ISlashCommand, SlashCommandContext } from '@rocket.chat/apps-engine/def
 import { JackettApp } from '../JackettApp';
 import * as msgHelper from '../lib/helpers/messageHelper';
 import usage from '../lib/helpers/usage';
+import { AppPersistence } from '../lib/persistence';
 
 export class JackettCommand implements ISlashCommand {
   public command = 'jackett';
@@ -21,6 +22,22 @@ export class JackettCommand implements ISlashCommand {
           text += usage[p].usage + '\n>' + usage[p].description + '\n';
         }
       }
+    }
+
+    const persistence = new AppPersistence(persis, read.getPersistenceReader());
+
+    const serverAddress = await persistence.getUserServer(context.getSender());
+    if (serverAddress) {
+      text += '\n*Server: *' + serverAddress;
+    } else {
+      text += '\nNo Server on file!';
+    }
+
+    const apiKey = await persistence.getUserApiKey(context.getSender());
+    if (apiKey) {
+      text += '\n*API Key on file!*';
+    } else {
+      text += '\n*API Key not on file.*';
     }
 
     await msgHelper.sendNotificationSingleAttachment({
