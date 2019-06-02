@@ -3,6 +3,16 @@
   "customize_name_description": "Choose the username that this app will post as.",
   "customize_icon": "Customize Icon",
   "customize_icon_description": "Choose the icon that is used for messages from this app.",
-  "slashcommand_params": "help",
-  "slashcommand_description": "Shows all Jackett App commands"
+  "slashcommand_params": "",
+  "slashcommand_description": "Shows all Jackett App commands",
+  "slashcommand_indexers_params": " [configured|unconfigured|public|private]",
+  "slashcommand_indexers_description": "Show all indexers, optionally filter by configured/public",
+  "slashcommand_login_params": "[PASSWORD]",
+  "slashcommand_login_description": "Login to you Jackett Server",
+  "slashcommand_setserver_params": "[SERVER ADDRESS]",
+  "slashcommand_setserver_description": "Set the Jackett Server Address",
+  "slashcommand_search_params": "(p=2) (filter=(word1 word2 seeders>2)) (trackers=(tracker1,tracker2) [QUERY]",
+  "slashcommand_search_description": "Search Jackett and returns results (start query with p=?? to paginate, trackers=(??,??) to optionally specify trackers, or filter=(?? ??) to optionally filter the results)",
+  "slashcommand_setapikey_params": "[API KEY]",
+  "slashcommand_setapikey_description": "Set the Jackett API Key"
 }

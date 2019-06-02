@@ -5,6 +5,11 @@ import { App } from '@rocket.chat/apps-engine/definition/App';
 import { IAppInfo } from '@rocket.chat/apps-engine/definition/metadata';
 import { SettingType } from '@rocket.chat/apps-engine/definition/settings';
 import { JackettCommand } from './commands/JackettCommand';
+import { JackettIndexersCommand } from './commands/JackettIndexersCommand';
+import { JackettLoginCommand } from './commands/JackettLoginCommand';
+import { JackettSearchCommand } from './commands/JackettSearchCommand';
+import { JackettSetApiKeyCommand } from './commands/JackettSetApiKeyCommand';
+import { JackettSetServerCommand } from './commands/JackettSetServerCommand';
 
 export class JackettApp extends App {
     constructor(info: IAppInfo, logger: ILogger) {
@@ -33,5 +38,10 @@ export class JackettApp extends App {
       });
 
       await configuration.slashCommands.provideSlashCommand(new JackettCommand(this));
+      // await configuration.slashCommands.provideSlashCommand(new JackettIndexersCommand(this));
+      // await configuration.slashCommands.provideSlashCommand(new JackettLoginCommand(this));
+      await configuration.slashCommands.provideSlashCommand(new JackettSetServerCommand(this));
+      await configuration.slashCommands.provideSlashCommand(new JackettSearchCommand(this));
+      await configuration.slashCommands.provideSlashCommand(new JackettSetApiKeyCommand(this));
     }
 }

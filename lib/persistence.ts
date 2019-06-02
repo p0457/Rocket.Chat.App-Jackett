@@ -20,6 +20,7 @@ export class AppPersistence {
 
     return result ? (result as any).server : undefined;
   }
+
   public async setUserToken(token: string, user: IUser): Promise<void> {
     const userAssociation = new RocketChatAssociationRecord(RocketChatAssociationModel.USER, user.id);
     const typeAssociation = new RocketChatAssociationRecord(RocketChatAssociationModel.MISC, 'jackett-token');
@@ -34,5 +35,21 @@ export class AppPersistence {
     const [result] = await this.persistenceRead.readByAssociations([userAssociation, typeAssociation]);
 
     return result ? (result as any).token : undefined;
+  }
+
+  public async setUserApiKey(apikey: string, user: IUser): Promise<void> {
+    const userAssociation = new RocketChatAssociationRecord(RocketChatAssociationModel.USER, user.id);
+    const typeAssociation = new RocketChatAssociationRecord(RocketChatAssociationModel.MISC, 'jackett-apikey');
+
+    await this.persistence.updateByAssociations([userAssociation, typeAssociation], { apikey }, true);
+  }
+
+  public async getUserApiKey(user: IUser): Promise<string | undefined> {
+    const userAssociation = new RocketChatAssociationRecord(RocketChatAssociationModel.USER, user.id);
+    const typeAssociation = new RocketChatAssociationRecord(RocketChatAssociationModel.MISC, 'jackett-apikey');
+
+    const [result] = await this.persistenceRead.readByAssociations([userAssociation, typeAssociation]);
+
+    return result ? (result as any).apikey : undefined;
   }
 }
