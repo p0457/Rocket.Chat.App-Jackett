@@ -8,26 +8,26 @@ export function timeSince(date: Date|string): string {
   const seconds = Math.floor((diff) / 1000);
   let interval = Math.floor(seconds / 31536000);
 
-  if (interval > 1) {
-    return interval + ' years';
+  if (Math.abs(interval) > 1) {
+    return Math.abs(interval) + ' years ' + (interval < 0 ? 'from now' : 'ago');
   }
   interval = Math.floor(seconds / 2592000);
-  if (interval > 1) {
-    return interval + ' months';
+  if (Math.abs(interval) > 1) {
+    return Math.abs(interval) + ' months ' + (interval < 0 ? 'from now' : 'ago');
   }
   interval = Math.floor(seconds / 86400);
-  if (interval > 1) {
-    return interval + ' days';
+  if (Math.abs(interval) > 1) {
+    return Math.abs(interval) + ' days ' + (interval < 0 ? 'from now' : 'ago');
   }
   interval = Math.floor(seconds / 3600);
-  if (interval > 1) {
-    return interval + ' hours';
+  if (Math.abs(interval) > 1) {
+    return Math.abs(interval) + ' hours ' + (interval < 0 ? 'from now' : 'ago');
   }
   interval = Math.floor(seconds / 60);
-  if (interval > 1) {
-    return interval + ' minutes';
+  if (Math.abs(interval) > 1) {
+    return Math.abs(interval) + ' minutes ' + (interval < 0 ? 'from now' : 'ago');
   }
-  return Math.floor(seconds) + ' seconds';
+  return Math.floor(seconds) + ' seconds ' + (interval < 0 ? 'from now' : 'ago');
 }
 
 export function formatDate(date: Date|string): string {
