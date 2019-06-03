@@ -185,6 +185,13 @@ export async function sendSearchResults(results, query: string, command: string,
       msg_processing_type: MessageProcessingType.RespondWithMessage,
     });
   }
+  resultsActions.push({
+    type: MessageActionType.BUTTON,
+    text: 'Search Again',
+    msg: command.trim(),
+    msg_in_chat_window: true,
+    msg_processing_type: MessageProcessingType.RespondWithMessage,
+  });
   attachments.push({
     collapsed: false,
     color: '#00CE00',
