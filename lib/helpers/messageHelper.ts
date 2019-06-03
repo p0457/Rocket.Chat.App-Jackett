@@ -3,8 +3,8 @@ import { IMessageAction, IMessageAttachment, MessageActionButtonsAlignment, Mess
 import { IRoom } from '@rocket.chat/apps-engine/definition/rooms';
 import { IUser } from '@rocket.chat/apps-engine/definition/users';
 import { formatBytes } from './bytsConverter';
-import usage from './usage';
 import { formatDate, timeSince } from './dates';
+import usage from './usage';
 
 export async function sendNotification(text: string, read: IRead, modify: IModify, user: IUser, room: IRoom): Promise<void> {
   const icon = await read.getEnvironmentReader().getSettings().getValueById('jackett_icon');
