@@ -4,6 +4,7 @@ import { IRoom } from '@rocket.chat/apps-engine/definition/rooms';
 import { IUser } from '@rocket.chat/apps-engine/definition/users';
 import { formatBytes } from './bytsConverter';
 import usage from './usage';
+import { formatDate, timeSince } from './dates';
 
 export async function sendNotification(text: string, read: IRead, modify: IModify, user: IUser, room: IRoom): Promise<void> {
   const icon = await read.getEnvironmentReader().getSettings().getValueById('jackett_icon');
@@ -227,7 +228,7 @@ export async function sendSearchResults(results, query: string, command: string,
         fields.push({
           short: true,
           title: 'Published',
-          value: searchResult.PublishDate,
+          value: formatDate(searchResult.PublishDate) + ' _(' + timeSince(searchResult.PublishDate) + ')',
         });
       }
       if (searchResult.Size) {
