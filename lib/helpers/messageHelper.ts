@@ -273,8 +273,14 @@ export async function sendSearchResults(results, query: string, command: string,
           url: searchResult.MagnetUri,
           text: 'Magnet Link',
           msg_in_chat_window: false,
-          is_webview: true, // TODO: Test if this opens in the browser
           msg_processing_type: MessageProcessingType.SendMessage,
+        });
+        actions.push({
+          type: MessageActionType.BUTTON,
+          url: searchResult.MagnetUri,
+          text: 'Show Magnet Link',
+          msg_in_chat_window: true,
+          msg_processing_type: MessageProcessingType.RespondWithMessage,
         });
       }
 
