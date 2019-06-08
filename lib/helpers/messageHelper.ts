@@ -205,7 +205,7 @@ export async function sendSearchResults(results, query: string, command: string,
   });
 
   if (results.Results && Array.isArray(results.Results)) {
-    results.Results.forEach((searchResult) => {
+    results.Results.forEach(async (searchResult) => {
       let text = '';
 
       if (searchResult.Seeders) {
@@ -275,13 +275,18 @@ export async function sendSearchResults(results, query: string, command: string,
           msg_in_chat_window: false,
           msg_processing_type: MessageProcessingType.SendMessage,
         });
-        actions.push({
-          type: MessageActionType.BUTTON,
-          url: searchResult.MagnetUri,
-          text: 'Show Magnet Link',
-          msg_in_chat_window: true,
-          msg_processing_type: MessageProcessingType.RespondWithMessage,
-        });
+
+        let magnetLinkHandlerCommand = await read.getEnvironmentReader().getSettings().getValueById('jackett_magnet_handler');
+        if (magnetLinkHandlerCommand && magnetLinkHandlerCommand.length > 1) {
+          magnetLinkHandlerCommand = magnetLinkHandlerCommand.trim();
+          actions.push({
+            type: MessageActionType.BUTTON,
+            text: 'Magnet Link (Handler)',
+            msg: `${magnetLinkHandlerCommand} ${searchResult.MagnetUri}`,
+            msg_in_chat_window: true,
+            msg_processing_type: MessageProcessingType.RespondWithMessage,
+          });
+        }
       }
 
       let indexDisplay = searchResult._IndexDisplay.toString();

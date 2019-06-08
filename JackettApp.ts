@@ -37,6 +37,16 @@ export class JackettApp extends App {
         i18nDescription: 'customize_icon_description',
       });
 
+      await configuration.settings.provideSetting({
+        id: 'jackett_magnet_handler',
+        type: SettingType.STRING,
+        packageValue: '',
+        required: false,
+        public: false,
+        i18nLabel: 'customize_magnet_handler',
+        i18nDescription: 'customize_magnet_handler_description',
+      });
+
       await configuration.slashCommands.provideSlashCommand(new JackettCommand(this));
       // await configuration.slashCommands.provideSlashCommand(new JackettIndexersCommand(this));
       // await configuration.slashCommands.provideSlashCommand(new JackettLoginCommand(this));

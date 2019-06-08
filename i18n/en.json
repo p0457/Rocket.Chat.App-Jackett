@@ -3,6 +3,8 @@
   "customize_name_description": "Choose the username that this app will post as.",
   "customize_icon": "Customize Icon",
   "customize_icon_description": "Choose the icon that is used for messages from this app.",
+  "customize_magnet_handler": "Magnet Handler Command",
+  "customize_magnet_handler_description": "(Optional) will allow for a new action in search to pass the command below, followed by the magnet link.",
   "slashcommand_params": "",
   "slashcommand_description": "Shows all Jackett App commands",
   "slashcommand_indexers_params": " [configured|unconfigured|public|private]",
