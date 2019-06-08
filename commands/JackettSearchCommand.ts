@@ -244,7 +244,10 @@ export class JackettSearchCommand implements ISlashCommand {
       }
       queryDisplay += query;
       // Artificially limit for now
-      const pages = Math.round(searchResults.Results.length / 20);
+      let pages = Math.round(searchResults.Results.length / 20);
+      if (pages === 1) {
+        pages = 1;
+      }
       if (page > pages) {
         page = 1;
         // TODO: Notify user that the page did not exist
