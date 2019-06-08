@@ -245,7 +245,7 @@ export class JackettSearchCommand implements ISlashCommand {
       queryDisplay += query;
       // Artificially limit for now
       let pages = Math.round(searchResults.Results.length / 20);
-      if (pages === 1) {
+      if (pages === 0) {
         pages = 1;
       }
       if (page > pages) {
