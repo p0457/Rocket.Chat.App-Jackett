@@ -40,6 +40,8 @@ export class JackettCommand implements ISlashCommand {
       text += '\n*API Key not on file.*';
     }
 
+    text += '\n\nThis application is not created by, affiliated with, or supported by Jackett.';
+
     await msgHelper.sendNotificationSingleAttachment({
       collapsed: false,
       color: '#e4a00e',

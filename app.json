@@ -1,6 +1,6 @@
 {
     "id": "1874b367-5b1c-4b37-80bc-8114200c6ff1",
-    "version": "1.2.4",
+    "version": "1.2.5",
     "requiredApiVersion": "^1.4.0",
     "iconFile": "icon.png",
     "author": {
@@ -11,5 +11,5 @@
     "name": "Jackett",
     "nameSlug": "jackett",
     "classFile": "JackettApp.ts",
-    "description": "Interact with a Jackett Server"
+    "description": "Interact with a Jackett Server. This application is not created by, affiliated with, or supported by Jackett."
 }
